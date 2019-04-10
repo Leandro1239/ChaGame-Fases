@@ -2,30 +2,27 @@
 
 public class Movimentacao : MonoBehaviour {
        
-    /*int moedas = 0;                      //MOEDA
-    public TextMesh Total_Moeda;*/
+    int coleta = 0;                                             //MOEDA
+    public TextMesh Total_coleta;
 
-    public Rigidbody2D player;
-
-
+    public Rigidbody2D player;                                  //JOGADOR
     int forcapulo = 200;
     int velocidade = 7;
     int direcao = 0;
-
     private bool olhandodireita = true;
     private bool pisandochao = false;
 
-    void Start()                                               //Jogador
+    void Start()                                               
     {
         player = gameObject.GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        transform.Translate(new Vector3((direcao * velocidade) * Time.deltaTime, 0, 0));
+        transform.Translate(new Vector3((direcao * velocidade) * Time.deltaTime, 0, 0));        //MOVE O PERSONAGEM
     }
 
-    void Flip()
+    void Flip()                                                             //VIRA PARA O OUTRO LADO
     {
         olhandodireita = !olhandodireita;
         Vector3 theScale = transform.localScale;
@@ -33,41 +30,39 @@ public class Movimentacao : MonoBehaviour {
         transform.localScale = theScale;
     }
 
-    public void Direita()
+    public void Direita()                                                   //MÉTODO QUE VIRA PRO LADO
     {
         direcao = 1;
-
         if (direcao > 0 && olhandodireita == false)
         {
             Flip();
         }
     }
 
-    public void Esquerda()
+    public void Esquerda()                                                  //MÉTODO QUE VIRA PRO LADO
     {
         direcao = -1;
-
         if (direcao < 0 && olhandodireita == true)
         {
             Flip();
         }
     }
 
-    public void Para()
+    public void Para()                                                      //PARA DE ANDAR
     {
         direcao = 0;
     }
 
-    public void Pula()
+    public void Pula()                                                      //SAI DO CHÃO
     {
-        if (pisandochao)                            //PULA com o botão
+        if (pisandochao)                            
         {
-            player.AddForce(new Vector2(0, forcapulo));                                         //SAI DO CHÃO 
+            player.AddForce(new Vector2(0, forcapulo));                                         
             pisandochao = false;
         }
     }
 
-    public void OnCollisionEnter2D(Collision2D Chao)
+    public void OnCollisionEnter2D(Collision2D Chao)                        //COMPARA TAG COM O CHÃO
     {
         if (Chao.gameObject.CompareTag("Chao"))
         {
@@ -75,13 +70,13 @@ public class Movimentacao : MonoBehaviour {
         }
     }
 
-    /*public void OnTriggerEnter2D(Collider2D coletar)                         //COLETA E CONTA MOEDA
+    public void OnTriggerEnter2D(Collider2D coletar)                         //COLETA E CONTA MOEDA
     {
-        if (coletar.gameObject.CompareTag("coin"))
+        if (coletar.gameObject.CompareTag("Coletor"))
         {
             Destroy(coletar.gameObject);
-            moedas += 1;
-            Total_Moeda.text = moedas.ToString();
+            coleta += 1;
+            Total_coleta.text = coleta.ToString();
         }
-    }*/
+    }
 }     
