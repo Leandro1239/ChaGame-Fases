@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Movimentacao : MonoBehaviour {
        
@@ -10,38 +7,22 @@ public class Movimentacao : MonoBehaviour {
 
     public Rigidbody2D player;
 
-    public float velocidade;
-    public float forcapulo;
-    public float direcao = 0;
+
+    int forcapulo = 200;
+    int velocidade = 7;
+    int direcao = 0;
 
     private bool olhandodireita = true;
-    //private bool pulo = false;
     private bool pisandochao = false;
-    //public Transform chegachao;
 
-    private Animator Anima;
-
-    void Start ()                                               //Jogador
+    void Start()                                               //Jogador
     {
         player = gameObject.GetComponent<Rigidbody2D>();
-        Anima = gameObject.GetComponent<Animator>();
-        //chegachao = gameObject.transform.Find("Checador");
+    }
 
-	}
-
-    private void FixedUpdate()
+    private void Update()
     {
-        Mover();
-        
-        if (direcao > 0 && !olhandodireita)
-        {
-            Flip();
-        }
-
-        else if (direcao > 0 && !olhandodireita)
-        {
-            Flip();
-        }
+        transform.Translate(new Vector3((direcao * velocidade) * Time.deltaTime, 0, 0));
     }
 
     void Flip()
@@ -54,25 +35,35 @@ public class Movimentacao : MonoBehaviour {
 
     public void Direita()
     {
-        direcao = 5;
+        direcao = 1;
+
+        if (direcao > 0 && olhandodireita == false)
+        {
+            Flip();
+        }
     }
 
     public void Esquerda()
     {
-        direcao = -5;
+        direcao = -1;
+
+        if (direcao < 0 && olhandodireita == true)
+        {
+            Flip();
+        }
     }
 
-    public void Mover()
+    public void Para()
     {
-        player.velocity = new Vector2(direcao * velocidade, player.velocity.y);
-        //pisandochao = Physics2D.Linecast(transform.position, chegachao.position, 1 << LayerMask.NameToLayer("Chao"));
+        direcao = 0;
     }
-    
+
     public void Pula()
     {
         if (pisandochao)                            //PULA com o botão
         {
-            player.AddForce(new Vector2(0, forcapulo));                                         //SAI DO CHÃO                                                              //CONTATO COM O CHAO
+            player.AddForce(new Vector2(0, forcapulo));                                         //SAI DO CHÃO 
+            pisandochao = false;
         }
     }
 
@@ -82,7 +73,6 @@ public class Movimentacao : MonoBehaviour {
         {
             pisandochao = true;
         }
-
     }
 
     /*public void OnTriggerEnter2D(Collider2D coletar)                         //COLETA E CONTA MOEDA
