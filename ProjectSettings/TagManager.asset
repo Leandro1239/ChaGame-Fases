@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Chao
   - Coletor
+  - Inimigo
+  - Vida
+  - Saida
   layers:
   - Default
   - TransparentFX

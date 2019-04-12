@@ -2,9 +2,6 @@
 
 public class Movimentacao : MonoBehaviour {
        
-    int coleta = 0;                                             //MOEDA
-    public TextMesh Total_coleta;
-
     public Rigidbody2D player;                                  //JOGADOR
     int forcapulo = 200;
     int velocidade = 7;
@@ -67,16 +64,6 @@ public class Movimentacao : MonoBehaviour {
         if (Chao.gameObject.CompareTag("Chao"))
         {
             pisandochao = true;
-        }
-    }
-
-    public void OnTriggerEnter2D(Collider2D coletar)                         //COLETA E CONTA MOEDA
-    {
-        if (coletar.gameObject.CompareTag("Coletor"))
-        {
-            Destroy(coletar.gameObject);
-            coleta += 1;
-            Total_coleta.text = coleta.ToString();
         }
     }
 }     

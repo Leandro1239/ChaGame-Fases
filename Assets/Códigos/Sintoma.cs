@@ -1,16 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Sintoma : MonoBehaviour {
 
-    public Image BarraVida;
-   // public Text Quantidade;
-    int ValorAtual = 100;
-    int Dano = 33;
-    int Energia = 66;
+    public TextMesh Saude;
+
+    int ValorAtual = 30;
+    int Dano = 10;
+    int Energia = 10;
 
     public void OnCollisionEnter2D(Collision2D Dano)                        //TOMOU DANO
     {
@@ -26,42 +23,49 @@ public class Sintoma : MonoBehaviour {
         if (Vida.gameObject.CompareTag("Vida"))
         {
             VidaGanha();
+            Destroy(Vida.gameObject);
         }
     }
-
 
     public void VidaPerde()
     {
         if (ValorAtual > 0)
         {
             ValorAtual -= Dano;
-            BarraVida.fillAmount = (float)ValorAtual/100;
-            //string temp = ValorAtual.ToString();
-            //Quantidade.text = temp;
-            if (ValorAtual == 1)                    //MORREU
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
+            EstadoSaude();         
         }
     }
 
     public void VidaGanha()
     {
-        if (ValorAtual < 100)
+        if (ValorAtual < 30)
         {
             ValorAtual += Energia;
-            BarraVida.fillAmount = (float)ValorAtual / 100;
-            //string temp = ValorAtual.ToString();
-            //Quantidade.text = temp;
+            EstadoSaude();
         }
-        MaxVida();
     }
 
-    void MaxVida()
+    public void EstadoSaude()
     {
-        if (ValorAtual > 100)
+        if (ValorAtual == 30)
         {
-            ValorAtual = 100;
+            Saude.text = "Saudável";
+        }
+
+        if (ValorAtual == 20)
+        {
+            Saude.text = "Doente";
+        }
+
+        if (ValorAtual == 10)
+        {
+            Saude.text = "Muito Doente";
+        }
+
+        if (ValorAtual == 0)                    //MORREU
+        {
+            SceneManager.LoadScene("Morreu");
         }
     }
+   
 }
