@@ -25,17 +25,17 @@ public class AlterarCena : MonoBehaviour {            //Troca de cenário de aco
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
     }
 
-    public void Fase1()
+    public void Avançar1()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void Fase2()
+    public void Avançar2()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }
 
-    public void Fase3()
+    public void Avançar3()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
     }
