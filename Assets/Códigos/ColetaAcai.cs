@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ColetaAcai : MonoBehaviour
 {
     int coleta = 0;                                             //MOEDA
-    public TextMesh Total_coleta;
+    public Text Total_coleta;
 
     public void OnTriggerEnter2D(Collider2D Coletar)                         //COLETA E CONTA MOEDA
     {

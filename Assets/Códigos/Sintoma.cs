@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Sintoma : MonoBehaviour {
 
-    public TextMesh Saude;
+    public Text Saude;
 
     int ValorAtual = 30;
     int Dano = 10;

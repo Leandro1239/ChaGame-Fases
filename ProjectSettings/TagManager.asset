@@ -18,7 +18,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - "Bot\xE3o"
   - 
   - 
   - 
@@ -45,4 +45,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 3215833833
+    locked: 0
+  - name: MidGround
+    uniqueID: 710676225
+    locked: 0
+  - name: ForeGround
+    uniqueID: 4212686515
+    locked: 0
+  - name: Interact
+    uniqueID: 979917285
+    locked: 0
+  - name: UI
+    uniqueID: 4055837241
     locked: 0

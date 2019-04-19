@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Movimentacao : MonoBehaviour {
        
     public Rigidbody2D player;                                  //JOGADOR
+    public RawImage rImg;
     int forcapulo = 200;
     int velocidade = 7;
     int direcao = 0;
@@ -14,8 +16,12 @@ public class Movimentacao : MonoBehaviour {
         player = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    void Update()
     {
+        Rect temp = new Rect(rImg.uvRect);          //RAW IMG                                    
+        temp.x += direcao * 0.003f;                 //VELOCIDADE
+        rImg.uvRect = temp;
+
         transform.Translate(new Vector3((direcao * velocidade) * Time.deltaTime, 0, 0));        //MOVE O PERSONAGEM
     }
 
