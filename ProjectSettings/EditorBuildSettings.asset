@@ -20,10 +20,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Fase-3.unity
     guid: beee6ec00d1ad0046ab144381a61cc9e
-  - enabled: 1
-    path: Assets/Scenes/Morreu.unity
-    guid: c4776c8f8460c3545a9a4b1c013022be
-  - enabled: 1
-    path: Assets/Scenes/Passou.unity
-    guid: 2905fef5a97d6c540953c2a23042f3e3
   m_configObjects: {}

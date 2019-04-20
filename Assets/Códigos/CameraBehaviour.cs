@@ -6,7 +6,7 @@ public class CameraBehaviour : MonoBehaviour
     public float dampTime = 0.15f;                  //SUAVIDADE DA CAMERA
     private Vector3 velocity = Vector3.zero;        //VELOCIDADE
     float x = 0.3f;
-    float y = 0.25f;
+    float y = 0.2f;
     public Transform player;
 
     void Update()
