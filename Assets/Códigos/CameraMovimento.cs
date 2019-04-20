@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraBehaviour : MonoBehaviour
+public class CameraMovimento : MonoBehaviour
 {
     public float dampTime = 0.15f;                  //SUAVIDADE DA CAMERA
     private Vector3 velocity = Vector3.zero;        //VELOCIDADE
-    float x = 0.3f;
-    float y = 0.2f;
-    public Transform player;
+    float x = 0.3f;                                 //AJUSTE NO EIXO X
+    float y = 0.2f;                                 //AJUSTE NO EIXO X
+    public Transform player;                        //DEFINE O PLAYER
 
     void Update()
     {

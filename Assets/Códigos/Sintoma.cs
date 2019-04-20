@@ -4,18 +4,21 @@ using UnityEngine.UI;
 
 public class Sintoma : MonoBehaviour {
 
-    public Text Saude;
+    public static Sintoma instance;
 
-    int ValorAtual = 30;
-    int Dano = 10;
-    int Energia = 10;
+    public Text Saude;                                      //RECEBE O TEXTO ONDE ESCREVE O ATUAL ESTADO
+
+    public int ValorAtual = 30;                             //VALOR TOTAL DA VIDA
+    public int Dano = 10;                                          //VALOR QUANDO LEVA DANO
+    public int Energia = 10;                                       //VALOR QUANDO RECUPERA VIDA
 
     public void OnCollisionEnter2D(Collision2D Dano)                        //TOMOU DANO
     {
         if (Dano.gameObject.CompareTag("Inimigo"))              
         {
-            Destroy(Dano.gameObject);
-            VidaPerde();
+            Destroy(Dano.gameObject);                       //DESTROI O INIMIGO QUANDO TOCA
+            VidaPerde();                                    //CHAMA O METODO 'VidaPerde'
+
         }
     }
 
@@ -23,30 +26,31 @@ public class Sintoma : MonoBehaviour {
     {
         if (Vida.gameObject.CompareTag("Vida"))
         {
-            VidaGanha();
-            Destroy(Vida.gameObject);
+            VidaGanha();                                    //CHAMA O METODO 'VidaGanha'
+            Destroy(Vida.gameObject);                       //DESTROI A CURA
+
         }
     }
 
-    public void VidaPerde()
+    public void VidaPerde()                                 //MÉTODO QUE TIRA VIDA
     {
         if (ValorAtual > 0)
         {
             ValorAtual -= Dano;
-            EstadoSaude();         
+            EstadoSaude();                                  //CHAMA O MÉTODO 'EstadoSaúde' PARA VALIDAR 
         }
     }
 
-    public void VidaGanha()
+    public void VidaGanha()                                 //MÉTODO QUE DÁ VIDA
     {
         if (ValorAtual < 30)
         {
             ValorAtual += Energia;
-            EstadoSaude();
+            EstadoSaude();                                  //CHAMA O MÉTODO 'EstadoSaúde' PARA VALIDAR 
         }
     }
 
-    public void EstadoSaude()
+    public void EstadoSaude()                               //DIFINE TODOS OS ESTADOS E O QUE ACONTECE NELES
     {
         if (ValorAtual == 30)
         {
@@ -63,10 +67,5 @@ public class Sintoma : MonoBehaviour {
             Saude.text = "Muito Doente";
         }
 
-        if (ValorAtual == 0)                    //MORREU
-        {
-            SceneManager.LoadScene("Morreu");
-        }
     }
-   
 }

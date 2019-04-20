@@ -6,16 +6,44 @@ using System.Collections;
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
-    //private Text pontosUI;
-    private GameObject PainelLose;
 
-    private void Awake()
+    private Text Coleta_Total;
+    //private Text EstadoSaude;
+
+    private GameObject PainelLose;
+    private GameObject PainelWin;
+    private GameObject PainelPause;
+
+    void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        SceneManager.sceneLoaded += Carrega;
         LigaDesligaPainel();
     }
+
     void Carrega (Scene cena, LoadSceneMode modo)
     {
-        PainelLose = GameObject.Find("Panel - Pause");
+        Coleta_Total = GameObject.Find("TotalAçai_text").GetComponent<Text>();        //PROCURA SOZINHO O TEXTO
+        //EstadoSaude = GameObject.Find("ValorSaude_text").GetComponent<Text>();
+
+        PainelLose = GameObject.Find("Panel - Lose");
+        PainelWin = GameObject.Find("Panel - Win");
+        PainelPause = GameObject.Find("Panel - Pause");
+    }
+
+    public void UpdateUI()
+    {
+        Coleta_Total.text = ColectManager.instance.AcaiTotal.ToString();
+       // EstadoSaude.text = Sintoma.instance.ValorAtual.ToString();
     }
 
     public void GameOverUI()
@@ -23,18 +51,27 @@ public class UIManager : MonoBehaviour
         PainelLose.SetActive(true);
     }
 
-    void LigaDesligaPainel()
+    public void PassLevelUI()
     {
-        StartCoroutine(tempo());
+        PainelWin.SetActive(true);
     }
 
-    IEnumerator tempo()
+    public void PauseUI()
     {
-        yield return new WaitForSeconds(0.0001f);
-        PainelLose.SetActive(false);
+        PainelPause.SetActive(true);
     }
-    void Update()
+
+
+    void LigaDesligaPainel()
     {
-        
+        StartCoroutine(Tempo());
+    }
+
+    IEnumerator Tempo()
+    {
+        yield return new WaitForSeconds(0.001f);
+        /*PainelLose.SetActive(false);
+        PainelWin.SetActive(false);
+        PainelPause.SetActive(false);*/
     }
 }

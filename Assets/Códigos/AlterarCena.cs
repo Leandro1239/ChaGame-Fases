@@ -35,12 +35,12 @@ public class AlterarCena : MonoBehaviour {            //Troca de cenário de aco
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
     }
 
-    public void Sair ()
+    public void Sair ()             //FECHA O JOGO
     {
         Application.Quit();
     }
 
-    public void Repetir()
+    public void Repetir()           //RECARREGA A CENA
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
